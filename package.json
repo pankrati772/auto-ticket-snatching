@@ -2,19 +2,48 @@
   "name": "auto-ticket",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
+  "main": "electron/main.js",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc && vite build",
-    "preview": "vite preview"
+    "build": "vite build",
+    "serve": "vite preview",
+    "electron:local": "electron .",
+    "electron": "wait-on tcp:5173 && electron .",
+    "electron:serve": "concurrently -k \"pnpm dev\" \"pnpm electron\"",
+    "electron:build": "vite build && electron-builder --dir --armv7l"
   },
   "dependencies": {
     "vue": "^3.2.47"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.1.0",
+    "concurrently": "^7.6.0",
+    "cross-env": "^7.0.3",
+    "electron": "^23.2.0",
+    "electron-builder": "^23.6.0",
     "typescript": "^4.9.3",
     "vite": "^4.2.0",
-    "vue-tsc": "^1.2.0"
+    "vue-tsc": "^1.2.0",
+    "wait-on": "^7.0.1"
+  },
+  "build": {
+    "appId": "com.my-website.my-app",
+    "productName": "MyApp",
+    "copyright": "Copyright © 2021 kuari",
+    "mac": {
+      "category": "public.app-category.utilities"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets",
+      "output": "dist_electron"
+    }
   }
 }
