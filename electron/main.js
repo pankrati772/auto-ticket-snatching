@@ -2,20 +2,15 @@
  * @Author: PSB
  * @Date: 2023-03-24 14:44:30
  * @LastEditors: PSB
- * @LastEditTime: 2023-03-24 16:11:35
+ * @LastEditTime: 2023-03-24 16:51:14
  * @FilePath: \auto-ticket-snatching\electron\main.js
  */
 // 控制应用生命周期和创建原生浏览器窗口的模组
+// import { A } from './utils'
+let utils = require('./utils')
+const Utils = new utils()
 const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
-// const NODE_ENV = import.meta.env.DEV
-console.log(app.isPackaged, 'NODE_ENV')
-function handleSetTitle (event, title) {
-  const webContents = event.sender
-  const win = BrowserWindow.fromWebContents(webContents)
-  console.log(title, '收到的值')
-  win.setTitle(title)
-}
 function createWindow() {
   // 创建浏览器窗口
   const mainWindow = new BrowserWindow({
@@ -25,11 +20,6 @@ function createWindow() {
       preload: path.join(__dirname, 'preload.js')
     }
   })
-  // ipcMain.on('set-title', (event, title) => {
-  //   const webContents = event.sender
-  //   const win = BrowserWindow.fromWebContents(webContents)
-  //   win.setTitle(title)
-  // })
   // 加载 index.html
   mainWindow.loadURL(
     app.isPackaged
@@ -47,7 +37,7 @@ function createWindow() {
 // 和创建浏览器窗口的时候调用
 // 部分 API 在 ready 事件触发后才能使用。
 app.whenReady().then(() => {
-  ipcMain.on('set-title', handleSetTitle)
+  ipcMain.on('set-title', Utils.handleSetTitle)
   createWindow()
 
   app.on('activate', function () {
