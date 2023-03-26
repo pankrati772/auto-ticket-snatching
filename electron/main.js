@@ -2,7 +2,7 @@
  * @Author: PSB
  * @Date: 2023-03-24 14:44:30
  * @LastEditors: PSB
- * @LastEditTime: 2023-03-24 16:51:14
+ * @LastEditTime: 2023-03-26 19:52:27
  * @FilePath: \auto-ticket-snatching\electron\main.js
  */
 // 控制应用生命周期和创建原生浏览器窗口的模组
@@ -28,6 +28,7 @@ function createWindow() {
   );
 
   // 打开开发工具
+  console.log(app.isPackaged,'是否已达包')
   if (!app.isPackaged) {
     mainWindow.webContents.openDevTools()
   }

@@ -21,16 +21,16 @@ exports = module.exports = class utils {
         //     width: 1600,
         //     height:800
         // })
-        await page.goto("https://www.jd.com");
+        await page.goto("https://www.damai.cn/");
         //获取输入框元素并在输入框内输入‘手机’
-        const input = await page.$('#key');
-        await input.type('手机');
+        const input = await page.$('.input-search');
+        await input.type('薛之谦');
         //模拟键盘“回车”键
         await page.keyboard.press('Enter');
         //等待元素加载成功
-        await page.waitForSelector('#J_goodsList > ul > li:nth-child(1)');
-        //获取元素innerText属性
-        const firstText = await page.$eval('#J_goodsList > ul > li:nth-child(1)', el => el.innerText);
+        await page.waitForSelector('.search__itemlist > .item__main');
+        // //获取元素innerText属性
+        const firstText = await page.$eval('.search__itemlist > .item__main.>items__txt__title', el => el.innerText);
         console.log('firstText', firstText);
     }
 }
