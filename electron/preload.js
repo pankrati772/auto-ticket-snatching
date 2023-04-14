@@ -2,7 +2,7 @@
  * @Author: PSB
  * @Date: 2023-03-24 14:46:11
  * @LastEditors: PSB
- * @LastEditTime: 2023-03-24 16:12:52
+ * @LastEditTime: 2023-04-14 16:46:03
  * @FilePath: \auto-ticket-snatching\electron\preload.js
  */
 // 所有Node.js API都可以在预加载过程中使用。
@@ -10,7 +10,8 @@
 const { contextBridge, ipcRenderer } = require('electron')
 
 contextBridge.exposeInMainWorld('electronAPI', {
-    setTitle: (title) => ipcRenderer.send('set-title', title)
+    setTitle: (title) => ipcRenderer.send('set-title', title),
+    autoOpen: (autoFrom) => ipcRenderer.send('auto-open', autoFrom), 	// auto-open the window when the app first starts up.
 })
 window.addEventListener('DOMContentLoaded', () => {
     const replaceText = (selector, text) => {

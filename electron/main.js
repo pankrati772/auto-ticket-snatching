@@ -1,15 +1,15 @@
+
 /*
  * @Author: PSB
  * @Date: 2023-03-24 14:44:30
  * @LastEditors: PSB
- * @LastEditTime: 2023-03-26 19:52:27
+ * @LastEditTime: 2023-04-14 16:22:22
  * @FilePath: \auto-ticket-snatching\electron\main.js
  */
 // 控制应用生命周期和创建原生浏览器窗口的模组
-// import { A } from './utils'
 let utils = require('./utils')
 const Utils = new utils()
-const { app, BrowserWindow, ipcMain } = require('electron')
+const { app, BrowserWindow, ipcMain, remote } = require('electron')
 const path = require('path')
 function createWindow() {
   // 创建浏览器窗口
@@ -17,21 +17,25 @@ function createWindow() {
     width: 1600,
     height: 800,
     webPreferences: {
+      devTools: true,
       preload: path.join(__dirname, 'preload.js')
     }
   })
+  // remote.getCurrentWebContents().openDevTools();
   // 加载 index.html
+  // mainWindow.loadFile('index.html')
+
+  // 打开开发工具
+  // console.log(app.isPackaged,'是否已达包')
+  if (!app.isPackaged) {
+    console.log('开启工具')
+    // mainWindow.webContents.openDevTools()
+  }
   mainWindow.loadURL(
     app.isPackaged
       ? `file://${path.join(__dirname, '../dist/index.html')}`
       : 'http://localhost:5173/'
   );
-
-  // 打开开发工具
-  console.log(app.isPackaged,'是否已达包')
-  if (!app.isPackaged) {
-    mainWindow.webContents.openDevTools()
-  }
 }
 
 // 这段程序将会在 Electron 结束初始化
@@ -39,6 +43,7 @@ function createWindow() {
 // 部分 API 在 ready 事件触发后才能使用。
 app.whenReady().then(() => {
   ipcMain.on('set-title', Utils.handleSetTitle)
+  ipcMain.on('auto-open', Utils.autoTicket)
   createWindow()
 
   app.on('activate', function () {
