@@ -2,7 +2,7 @@
  * @Author: PSB
  * @Date: 2023-03-24 16:33:53
  * @LastEditors: PSB
- * @LastEditTime: 2023-04-15 00:27:21
+ * @LastEditTime: 2023-04-15 23:19:28
  * @FilePath: \auto-ticket-snatching\electron\utils.js
  */
 const { app, BrowserWindow, ipcMain } = require('electron')

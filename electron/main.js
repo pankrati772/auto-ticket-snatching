@@ -3,7 +3,7 @@
  * @Author: PSB
  * @Date: 2023-03-24 14:44:30
  * @LastEditors: PSB
- * @LastEditTime: 2023-04-14 16:22:22
+ * @LastEditTime: 2023-05-25 17:15:57
  * @FilePath: \auto-ticket-snatching\electron\main.js
  */
 // 控制应用生命周期和创建原生浏览器窗口的模组
@@ -21,12 +21,9 @@ function createWindow() {
       preload: path.join(__dirname, 'preload.js')
     }
   })
-  // remote.getCurrentWebContents().openDevTools();
-  // 加载 index.html
-  // mainWindow.loadFile('index.html')
+
 
   // 打开开发工具
-  // console.log(app.isPackaged,'是否已达包')
   if (!app.isPackaged) {
     console.log('开启工具')
     // mainWindow.webContents.openDevTools()

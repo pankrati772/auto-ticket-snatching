@@ -2,7 +2,7 @@
  * @Author: PSB
  * @Date: 2023-03-26 19:37:01
  * @LastEditors: PSB
- * @LastEditTime: 2023-04-14 17:11:17
+ * @LastEditTime: 2023-08-04 14:36:28
  * @FilePath: \auto-ticket-snatching\src\views\index\index.vue
 -->
 <template>
