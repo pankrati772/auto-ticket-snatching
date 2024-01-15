@@ -7,6 +7,21 @@
 -->
 <template>
 	<div>
+		<el-form :model="autoFrom">
+			<el-form-item label="抢票网站">
+				<el-input v-model="autoFrom.url" />
+			</el-form-item>
+			<el-form-item label="搜索关键词">
+				<el-input v-model="autoFrom.keyWord" />
+			</el-form-item>
+			<el-form-item label="用户名">
+				<el-input v-model="autoFrom.userName" />
+			</el-form-item>
+			<el-form-item label="密码">
+				<el-input v-model="autoFrom.passWord" />
+			</el-form-item>
+		</el-form>
+		<el-button @click="goAuto">启动自动化</el-button>
 		<el-button @click="initObs">初始化obs</el-button>
 		<obsLogin></obsLogin>
 	</div>
