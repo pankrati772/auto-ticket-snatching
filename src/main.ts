@@ -6,7 +6,7 @@
  * @FilePath: \auto-ticket-snatching\src\main.ts
  */
 import { createApp } from 'vue'
-// import './style.css'
+import './style.css'
 import App from './App.vue'
 
 import router from './router'
@@ -17,16 +17,25 @@ import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
-console.log(window, 'window')
+// const { ipcRenderer } = require('electron');
+
+// console.log(window, 'window')
+(window as any).xrkClient = (window as any).electronAPI.ipcRenderer;
+// (window as any).xrkClient.on('init-obs', (event: any, msg: any) => {
+//   console.log(msg, 'arg')
+
+// }
+// )
 
 const app = createApp(App)
 app.use(ElementPlus).provide(ID_INJECTION_KEY, {
-    prefix: 100,
-    current: 0,
-  })
-  for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
-    app.component(key, component)
-  }
+  prefix: 100,
+  current: 0,
+})
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+  app.component(key, component)
+}
 
-  app.use(router)
-  app.mount('#app')
+app.use(router)
+app.mount('#app')
+

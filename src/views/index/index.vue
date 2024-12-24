@@ -7,7 +7,7 @@
 -->
 <template>
 	<div>
-		<el-button @click="initObs">初始化obs</el-button>
+		<!-- <el-button @click="initObs">初始化obs</el-button> -->
 		<obsLogin></obsLogin>
 	</div>
 </template>
