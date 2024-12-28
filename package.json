@@ -2,16 +2,15 @@
   "name": "auto-ticket",
   "private": true,
   "version": "0.0.0",
-  "main": "electron/main.js",
+  "main": "main.js",
   "esModuleInterop": true,
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
-    "electron:local": "electron .",
-    "electron": "wait-on tcp:5173 && electron .",
-    "electron:serve": "concurrently -k \"pnpm dev\" \"pnpm electron\"",
-    "electron:build": "vite build && electron-builder --dir --armv7l"
+    "electron:local": "nodemon --exec electron .",
+    "electron": "electron ."
+
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",

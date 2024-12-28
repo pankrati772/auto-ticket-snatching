@@ -1,0 +1,21 @@
+body{
+    width: 100dvw;
+    height: 100dvh;
+    margin: 0;
+    padding: 0;
+}
+html {
+    -webkit-app-region: drag;
+}
+textarea{
+    -webkit-app-region: no-drag;
+}
+
+.cameraBox{
+    width: 100dvw;
+    height: 100dvh;
+    border-radius: 50%;
+    background-color: red;
+    overflow: hidden;
+    text-align: center;
+}

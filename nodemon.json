@@ -1,0 +1,13 @@
+{
+    "ignore": [
+        "node_modules",
+        "dist",
+        "coverage"
+    ],
+    "watch": [
+        "*"
+    ],
+    "colours": true,
+    "verbos": true,
+    "ext": "js,json,html"
+}
